@@ -1,1 +1,1 @@
-game: python3 game_server.py
+web: python3 game_server.py
