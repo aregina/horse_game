@@ -2,7 +2,7 @@ from aiohttp import web
 import socketio
 import os
 
-PORT = os.environ.get('PORT')
+PORT = int(os.environ.get('PORT'))
 
 sio = socketio.AsyncServer()
 app = web.Application()
