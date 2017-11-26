@@ -6,10 +6,10 @@ var mainState = {
         // That's where we load the images and sounds
 
         // Load the horse sprite
-        game.load.image('horse', 'assets/horse.png');
-        game.load.image('sky', 'assets/sky.png');
-        game.load.image('pipe', 'assets/pipe.png');
-        game.load.image('win_screen', 'assets/phaser.png');
+        game.load.image('horse', '/assets/horse.png');
+        game.load.image('sky', '/assets/sky.png');
+        game.load.image('pipe', '/assets/pipe.png');
+        game.load.image('win_screen', '/assets/phaser.png');
     },
 
     create: function() { 
