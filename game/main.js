@@ -5,6 +5,14 @@ var mainState = {
         // This function will be executed at the beginning     
         // That's where we load the images and sounds
 
+        if(!game.device.desktop) {
+            game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+            game.scale.setMinMax(game.width/2, game.height/2, game.width, game.height);
+        }
+
+        game.scale.pageAlignHorizontally = true;
+        game.scale.pageAlignVertically = true;
+
         // Load the horse sprite
         game.load.image('horse', '/assets/horse.png');
         game.load.image('sky', '/assets/sky.png');
@@ -40,6 +48,7 @@ var mainState = {
         // Call the 'jump' function when the spacekey is hit
         var spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         spaceKey.onDown.add(this.jump, this);
+        game.input.onDown.add(this.jump, this);
 
         this.timer = game.time.events.loop(1500, this.addRowOfPipes, this);
         this.score_checker = game.time.events.loop(1500, this.checkScore, this);
