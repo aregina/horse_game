@@ -2,6 +2,23 @@ from aiohttp import web
 import socketio
 import os
 
+"""
+    How to deploy changes:
+    1. commit all changes to local git repository
+    2. git push heroku master
+    3. heroku ps:scale web=1
+    4. heroku open or open https://vast-citadel-39030.herokuapp.com/
+    5. if you need to check logs - use "heroku logs" command
+
+    TODO:
+    1. Collective score
+    2. Number of users
+    3. Start screen with "Join" button
+    4. Finish screen
+    5. 1-2-3-GO!
+
+"""
+
 PORT = int(os.environ.get('PORT'))
 
 sio = socketio.AsyncServer()
@@ -32,3 +49,4 @@ app.router.add_get('/', index)
 
 if __name__ == '__main__':
     web.run_app(app, port=PORT)
+
