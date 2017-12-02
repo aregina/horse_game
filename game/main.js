@@ -1,4 +1,7 @@
+type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.slim.js"
+
 var score = 0;
+var user_number = 0;
 // Create our 'main' state that will contain the game
 var mainState = {
     preload: function() { 
@@ -27,7 +30,8 @@ var mainState = {
         // Change the background color of the game to blue
         // game.stage.backgroundColor = '#71c5cf';   
         game.add.sprite(0, 0, 'sky');
-        this.labelScore = game.add.text(20, 20, score, { font: "30px Arial", fill: "#ffffff" });
+        this.labelScore = game.add.text(20, 20, "Score: " + score, { font: "30px Arial", fill: "#ffffff" });
+        this.labelUsersNumber = game.add.text(40, 20, "Users number: " + user_number, { font: "30px Arial", fill: "#ffffff" });
 
         // Create an empty group
         this.pipes = game.add.group();
@@ -143,6 +147,13 @@ var mainState = {
                 this.addOnePipe(400, i * 60 + 10);
     },
 };
+
+//Server interaction
+var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+socket.on('users number', function() {
+    user_number = msg.data;
+    });
 
 // Initialize Phaser, and create a 400px by 490px game
 var game = new Phaser.Game(400, 490, Phaser.AUTO);
