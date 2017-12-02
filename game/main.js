@@ -133,7 +133,7 @@ var mainState = {
 
     addRowOfPipes: function() {
         score += 1;
-        this.labelScore.text = score;
+        this.labelScore.text = "Score: " + score;
         // Randomly pick a number between 1 and 5
         // This will be the hole position
         var hole = Math.floor(Math.random() * 5) + 1;
@@ -151,7 +151,8 @@ var socket = io.connect('https://' + document.domain + ':' + location.port);
 
 socket.on('users number', function() {
     user_number = msg.data;
-    mainState.labelUsers.text = user_number;
+    console.log(user_number);
+    mainState.labelUsers.text = "Users: " + user_number;
     });
 
 // Initialize Phaser, and create a 400px by 490px game
