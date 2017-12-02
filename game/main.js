@@ -149,11 +149,11 @@ var mainState = {
 };
 
 //Server interaction
-var socket = io.connect('https://' + document.domain + ':' + location.port);
+// var socket = io.connect('https://' + document.domain + ':' + location.port);
 
-socket.on('users number', function() {
-    user_number = msg.data;
-    });
+// socket.on('users number', function() {
+//     user_number = msg.data;
+//     });
 
 // Initialize Phaser, and create a 400px by 490px game
 var game = new Phaser.Game(400, 490, Phaser.AUTO);
