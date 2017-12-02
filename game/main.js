@@ -29,7 +29,7 @@ var mainState = {
         // game.stage.backgroundColor = '#71c5cf';   
         game.add.sprite(0, 0, 'sky');
         this.labelScore = game.add.text(20, 20, "Score: " + score, { font: "30px Arial", fill: "#ffffff" });
-        this.labelUsersNumber = game.add.text(40, 20, "Users number: " + user_number, { font: "30px Arial", fill: "#ffffff" });
+        this.labelUsers = game.add.text(20, 50, "Users: " + user_number, { font: "30px Arial", fill: "#ffffff" });
 
         // Create an empty group
         this.pipes = game.add.group();
@@ -151,6 +151,7 @@ var socket = io.connect('https://' + document.domain + ':' + location.port);
 
 socket.on('users number', function() {
     user_number = msg.data;
+    mainState.labelUsers.text = user_number;
     });
 
 // Initialize Phaser, and create a 400px by 490px game
