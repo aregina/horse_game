@@ -149,7 +149,7 @@ var mainState = {
 // Server interaction
 var socket = io.connect('https://' + document.domain + ':' + location.port);
 
-socket.on('users_number', function() {
+socket.on('users_number', function(msg) {
     user_number = msg.data.users_number;
     console.log(user_number);
     mainState.labelUsers.text = "Users: " + user_number;
