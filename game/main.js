@@ -146,7 +146,7 @@ var mainState = {
     },
 };
 
-Server interaction
+// Server interaction
 var socket = io.connect('https://' + document.domain + ':' + location.port);
 
 socket.on('users number', function() {
