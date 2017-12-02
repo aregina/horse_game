@@ -35,7 +35,8 @@ async def index(request):
 
 @sio.on('connect')
 def connect(sid, environ):
-    global USERS_NUMBER += 1
+    global USERS_NUMBER
+    USERS_NUMBER += 1
     sio.emit('users number', USERS_NUMBER)
     print("connect ", sid)
 
@@ -46,7 +47,8 @@ def connect(sid, environ):
 
 @sio.on('disconnect')
 def disconnect(sid):
-    global USERS_NUMBER -= 1
+    global USERS_NUMBER
+    USERS_NUMBER -= 1
     sio.emit('users number', USERS_NUMBER)
     print('disconnect ', sid)
 
