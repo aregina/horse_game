@@ -34,10 +34,10 @@ async def index(request):
         return web.Response(text=f.read(), content_type='text/html')
 
 @sio.on('connect')
-def connect(sid, environ):
+async def connect(sid, environ):
     global USERS_NUMBER
     USERS_NUMBER += 1
-    sio.emit('users_number', {'users_number': USERS_NUMBER})
+    await sio.emit('users_number', {'users_number': USERS_NUMBER})
 
 # @sio.on('chat message')
 # async def message(sid, data):
@@ -45,10 +45,10 @@ def connect(sid, environ):
 #     await sio.emit('reply', room=sid)
 
 @sio.on('disconnect')
-def disconnect(sid):
+async def disconnect(sid):
     global USERS_NUMBER
     USERS_NUMBER -= 1
-    sio.emit('users_number', {'users_number': USERS_NUMBER})
+    await sio.emit('users_number', {'users_number': USERS_NUMBER})
 
 app.router.add_static('/assets', 'game/assets')
 app.router.add_static('/game', 'game')
