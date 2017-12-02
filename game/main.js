@@ -149,7 +149,7 @@ var mainState = {
 };
 
 //Server interaction
-var socket = io.connect('http://' + document.domain + ':' + location.port);
+var socket = io.connect('https://' + document.domain + ':' + location.port);
 
 socket.on('users number', function() {
     user_number = msg.data;
