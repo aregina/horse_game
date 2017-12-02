@@ -150,9 +150,9 @@ var mainState = {
 var socket = io.connect('https://' + document.domain + ':' + location.port);
 
 socket.on('users_number', function(msg) {
-    var user_number = msg.data.users_number;
-    console.log(user_number);
-    mainState.labelUsers.text = "Users: " + user_number;
+    // var user_number = msg.data.users_number;
+    console.log(data);
+    // mainState.labelUsers.text = "Users: " + user_number;
     });
 
 // Initialize Phaser, and create a 400px by 490px game
