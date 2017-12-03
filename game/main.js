@@ -158,10 +158,12 @@ game.state.add('main', mainState);
 game.state.start('main');
 
 // Server interaction
-var socket = io.connect('https://' + document.domain + ':' + location.port);
+game.state.onCreateCallback = function() {
+    var socket = io.connect('https://' + document.domain + ':' + location.port);
 
-socket.on('users_number', function(msg) {
-    // var user_number = msg.data;
-    console.log("users:" + msg.data);
-    labelUsers.text = "Users: " + msg.data;
+    socket.on('users_number', function(msg) {
+      // var user_number = msg.data;
+      console.log("users:" + msg.data);
+      labelUsers.text = "Users: " + msg.data;
     });
+}
