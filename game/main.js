@@ -4,6 +4,7 @@ var user_number = 0;
 // Initialize Phaser, and create a 400px by 490px game
 var game = new Phaser.Game(400, 600, Phaser.AUTO, "gameDiv");
 var labelUsers;
+var labelScore;
 var socket;
 
 // Create our 'main' state that will contain the game
@@ -34,7 +35,7 @@ var mainState = {
         // Change the background color of the game to blue
         // game.stage.backgroundColor = '#71c5cf';   
         game.add.sprite(0, 0, 'sky');
-        this.labelScore = game.add.text(20, 20, "Score: " + score, { font: "30px Arial", fill: "#ffffff" });
+        labelScore = game.add.text(20, 20, "Score: " + score, { font: "30px Arial", fill: "#ffffff" });
         labelUsers = game.add.text(20, 50, "Users: " + user_number, { font: "30px Arial", fill: "#ffffff" });
         if (socket == undefined) {
             socket = io.connect('https://' + document.domain + ':' + location.port);
@@ -43,6 +44,12 @@ var mainState = {
                 user_number = msg.data;
                 console.log("users:" + msg.data);
                 labelUsers.text = "Users: " + msg.data;
+            });
+
+            socket.on('score', function(msg) {
+            score = msg.data;
+            console.log("score:" + msg.data);
+            labelScore.text = "Score: " + msg.data;
             });
         }
 
@@ -96,7 +103,8 @@ var mainState = {
     },
 
     bump: function() {
-        score -= 1;
+        // score -= 1;
+        this.scoreUpdate('decrement')
         // if (this.bird.alive == false)
         //     return;
         // this.horse.alive = false;
@@ -147,17 +155,22 @@ var mainState = {
     },
 
     addRowOfPipes: function() {
-        score += 1;
+        // score += 1;
+        this.scoreUpdate('increment')
         this.labelScore.text = "Score: " + score;
-        // Randomly pick a number between 1 and 5
+        // Randomly pick a number between 1 and 7
         // This will be the hole position
         var hole = Math.floor(Math.random() * 7) + 1;
 
-        // Add the 6 pipes
+        // Add the 8 pipes
         // With one big hole at position 'hole' and 'hole + 1'
         for (var i = 0; i < 10; i++)
             if (i != hole && i != hole + 1) 
                 this.addOnePipe(400, i * 60 + 10);
+    },
+
+    scoreUpdate: function(operation_type) {
+        socket.emit('score_update', {data: operation_type});
     },
 };
 

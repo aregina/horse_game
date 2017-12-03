@@ -40,6 +40,17 @@ async def connect(sid, environ):
     await sio.emit('users_number', {'data': USERS_NUMBER})
     print('user {} connected'.format(sid))
 
+
+@sio.on('score_update')
+async def score_update(sid, message):
+    print('message', message)
+    global SCORE
+    if message['data'] == 'increment':
+        SCORE += 1
+    elif message['data'] == 'decrement':
+        SCORE -= 1
+    await sio.emit('score', {'data': SCORE})
+
 # @sio.on('chat message')
 # async def message(sid, data):
 #     print("message ", data)
