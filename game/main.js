@@ -4,6 +4,7 @@ var user_number = 0;
 // Initialize Phaser, and create a 400px by 490px game
 var game = new Phaser.Game(400, 600, Phaser.AUTO, "gameDiv");
 var labelUsers;
+var socket;
 
 // Create our 'main' state that will contain the game
 var mainState = {
@@ -24,7 +25,6 @@ var mainState = {
         game.load.image('sky', '/assets/sky.png');
         game.load.image('pipe', '/assets/pipe.png');
         game.load.image('win_screen', '/assets/phaser.png');
-        this.socket = undefined
     },
 
     create: function() { 
@@ -36,10 +36,10 @@ var mainState = {
         game.add.sprite(0, 0, 'sky');
         this.labelScore = game.add.text(20, 20, "Score: " + score, { font: "30px Arial", fill: "#ffffff" });
         labelUsers = game.add.text(20, 50, "Users: " + user_number, { font: "30px Arial", fill: "#ffffff" });
-        if (this.socket == undefined) {
-            this.socket = io.connect('https://' + document.domain + ':' + location.port);
+        if (socket == undefined) {
+            socket = io.connect('https://' + document.domain + ':' + location.port);
 
-        this.socket.on('users_number', function(msg) {
+        socket.on('users_number', function(msg) {
          // var user_number = msg.data;
         console.log("users:" + msg.data);
         labelUsers.text = "Users: " + msg.data;
