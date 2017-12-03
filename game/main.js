@@ -151,9 +151,10 @@ var mainState = {
 var socket = io.connect('https://' + document.domain + ':' + location.port);
 
 socket.on('users_number', function(msg) {
-    var user_number = msg.data;
+    // var user_number = msg.data;
     console.log("users:" + msg.data);
-    labelUsers.text = "Users: " + msg.data;
+    // labelUsers.text = "Users: " + msg.data;
+    game.add.text(20, 50, "Users: " + msg.data, { font: "30px Arial", fill: "#ffffff" });
     });
 
 // Initialize Phaser, and create a 400px by 490px game
@@ -161,7 +162,6 @@ var game = new Phaser.Game(400, 490, Phaser.AUTO);
 
 // Add the 'mainState' and call it 'main'
 game.state.add('main', mainState); 
-var labelUsers = game.add.text(20, 50, "Users: " + user_number, { font: "30px Arial", fill: "#ffffff" });
 
 // Start the state to actually start the game
 game.state.start('main');
