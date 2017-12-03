@@ -39,7 +39,7 @@ var mainState = {
         if (this.socket == undefined) {
             this.socket = io.connect('https://' + document.domain + ':' + location.port);
 
-        socket.on('users_number', function(msg) {
+        this.socket.on('users_number', function(msg) {
          // var user_number = msg.data;
         console.log("users:" + msg.data);
         labelUsers.text = "Users: " + msg.data;
