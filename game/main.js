@@ -159,7 +159,7 @@ socket.on('users_number', function(msg) {
     });
 
 // Initialize Phaser, and create a 400px by 490px game
-var game = new Phaser.Game(800, 890, Phaser.AUTO);
+var game = new Phaser.Game(600, 490, Phaser.AUTO);
 
 // Add the 'mainState' and call it 'main'
 game.state.add('main', mainState); 
