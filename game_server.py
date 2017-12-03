@@ -38,6 +38,7 @@ async def connect(sid, environ):
     global USERS_NUMBER
     USERS_NUMBER += 1
     await sio.emit('users_number', {'data': USERS_NUMBER})
+    print('user {} connected'.format(sid))
 
 # @sio.on('chat message')
 # async def message(sid, data):
@@ -49,6 +50,7 @@ async def disconnect(sid):
     global USERS_NUMBER
     USERS_NUMBER -= 1
     await sio.emit('users_number', {'data': USERS_NUMBER})
+    print('user {} disconnected'.format(sid))
 
 app.router.add_static('/assets', 'game/assets')
 app.router.add_static('/game', 'game')
