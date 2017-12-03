@@ -1,6 +1,8 @@
 var score = 0;
 var user_number = 0;
 
+// Initialize Phaser, and create a 400px by 490px game
+var game = new Phaser.Game(400, 600, Phaser.AUTO, "gameDiv");
 var labelUsers;
 
 // Create our 'main' state that will contain the game
@@ -157,9 +159,6 @@ socket.on('users_number', function(msg) {
     console.log("users:" + msg.data);
     labelUsers.text = "Users: " + msg.data;
     });
-
-// Initialize Phaser, and create a 400px by 490px game
-var game = new Phaser.Game(400, 600, Phaser.AUTO);
 
 // Add the 'mainState' and call it 'main'
 game.state.add('main', mainState); 
