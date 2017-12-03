@@ -42,8 +42,10 @@ var mainState = {
 
             socket.on('users_number', function(msg) {
                 user_number = msg.data;
+                score = msg.score
                 console.log("users:" + msg.data);
                 labelUsers.text = "Users: " + msg.data;
+                labelScore.text = "Score: " + msg.score;
             });
 
             socket.on('score', function(msg) {
@@ -95,7 +97,7 @@ var mainState = {
     },
 
     checkScore: function() {
-        if (score >= 500) {
+        if (score >= 10) {
             var win_screen = game.add.sprite(game.world.centerX, game.world.centerY, 'win_screen');
             win_screen.anchor.setTo(0.5, 0.5);
             game.paused = true;

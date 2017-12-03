@@ -36,8 +36,9 @@ async def index(request):
 @sio.on('connect')
 async def connect(sid, environ):
     global USERS_NUMBER
+    global SCORE
     USERS_NUMBER += 1
-    await sio.emit('users_number', {'data': USERS_NUMBER})
+    await sio.emit('users_number', {'data': USERS_NUMBER, 'score': SCORE})
     print('user {} connected'.format(sid))
 
 
