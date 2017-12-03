@@ -1,5 +1,7 @@
 var score = 0;
 var user_number = 0;
+
+var labelUsers = game.add.text(20, 50, "Users: " + user_number, { font: "30px Arial", fill: "#ffffff" });
 // Create our 'main' state that will contain the game
 var mainState = {
     preload: function() { 
@@ -29,7 +31,7 @@ var mainState = {
         // game.stage.backgroundColor = '#71c5cf';   
         game.add.sprite(0, 0, 'sky');
         this.labelScore = game.add.text(20, 20, "Score: " + score, { font: "30px Arial", fill: "#ffffff" });
-        this.labelUsers = game.add.text(20, 50, "Users: " + user_number, { font: "30px Arial", fill: "#ffffff" });
+        // this.labelUsers = game.add.text(20, 50, "Users: " + user_number, { font: "30px Arial", fill: "#ffffff" });
 
         // Create an empty group
         this.pipes = game.add.group();
@@ -152,7 +154,7 @@ var socket = io.connect('https://' + document.domain + ':' + location.port);
 socket.on('users_number', function(msg) {
     var user_number = msg.data;
     console.log("users:" + msg.data);
-    mainState.labelUsers.text = "Users: " + msg.data;
+    labelUsers.text = "Users: " + msg.data;
     });
 
 // Initialize Phaser, and create a 400px by 490px game
