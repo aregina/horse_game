@@ -1,7 +1,6 @@
 var score = 0;
 var user_number = 0;
 
-var labelUsers = game.add.text(20, 50, "Users: " + user_number, { font: "30px Arial", fill: "#ffffff" });
 // Create our 'main' state that will contain the game
 var mainState = {
     preload: function() { 
@@ -162,6 +161,7 @@ var game = new Phaser.Game(400, 490, Phaser.AUTO);
 
 // Add the 'mainState' and call it 'main'
 game.state.add('main', mainState); 
+var labelUsers = game.add.text(20, 50, "Users: " + user_number, { font: "30px Arial", fill: "#ffffff" });
 
 // Start the state to actually start the game
 game.state.start('main');
