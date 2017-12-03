@@ -24,6 +24,7 @@ var mainState = {
         game.load.image('sky', '/assets/sky.png');
         game.load.image('pipe', '/assets/pipe.png');
         game.load.image('win_screen', '/assets/phaser.png');
+        this.socket = undefined
     },
 
     create: function() { 
@@ -35,6 +36,15 @@ var mainState = {
         game.add.sprite(0, 0, 'sky');
         this.labelScore = game.add.text(20, 20, "Score: " + score, { font: "30px Arial", fill: "#ffffff" });
         labelUsers = game.add.text(20, 50, "Users: " + user_number, { font: "30px Arial", fill: "#ffffff" });
+        if (this.socket == undefined) {
+            this.socket = io.connect('https://' + document.domain + ':' + location.port);
+
+        socket.on('users_number', function(msg) {
+         // var user_number = msg.data;
+        console.log("users:" + msg.data);
+        labelUsers.text = "Users: " + msg.data;
+        });
+        }
 
         // Create an empty group
         this.pipes = game.add.group();
@@ -157,11 +167,4 @@ game.state.add('main', mainState);
 // Start the state to actually start the game
 game.state.start('main');
 
-// Server interaction
-var socket = io.connect('https://' + document.domain + ':' + location.port);
 
-socket.on('users_number', function(msg) {
-    // var user_number = msg.data;
-    console.log("users:" + msg.data);
-    labelUsers.text = "Users: " + msg.data;
-    });
