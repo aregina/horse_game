@@ -157,7 +157,7 @@ var mainState = {
     addRowOfPipes: function() {
         // score += 1;
         this.scoreUpdate('increment')
-        this.labelScore.text = "Score: " + score;
+        // this.labelScore.text = "Score: " + score;
         // Randomly pick a number between 1 and 7
         // This will be the hole position
         var hole = Math.floor(Math.random() * 7) + 1;
