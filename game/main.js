@@ -39,11 +39,11 @@ var mainState = {
         if (socket == undefined) {
             socket = io.connect('https://' + document.domain + ':' + location.port);
 
-        socket.on('users_number', function(msg) {
-         // var user_number = msg.data;
-        console.log("users:" + msg.data);
-        labelUsers.text = "Users: " + msg.data;
-        });
+            socket.on('users_number', function(msg) {
+                user_number = msg.data;
+                console.log("users:" + msg.data);
+                labelUsers.text = "Users: " + msg.data;
+            });
         }
 
         // Create an empty group
