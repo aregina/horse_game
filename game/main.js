@@ -152,7 +152,7 @@ var socket = io.connect('https://' + document.domain + ':' + location.port);
 socket.on('users_number', function(msg) {
     var user_number = msg.data;
     console.log("users:" + msg.data);
-    mainState.labelUsers.text = "Users: " + user_number;
+    mainState.labelUsers.text = "Users: " + msg.data;
     });
 
 // Initialize Phaser, and create a 400px by 490px game
