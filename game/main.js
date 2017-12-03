@@ -151,7 +151,7 @@ var socket = io.connect('https://' + document.domain + ':' + location.port);
 
 socket.on('users_number', function(msg) {
     var user_number = msg.data;
-    console.log(msg.data);
+    console.log("users:" + msg.data);
     mainState.labelUsers.text = "Users: " + user_number;
     });
 
