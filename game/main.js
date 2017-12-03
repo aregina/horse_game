@@ -143,7 +143,7 @@ var mainState = {
 
         // Add the 6 pipes
         // With one big hole at position 'hole' and 'hole + 1'
-        for (var i = 0; i < 8; i++)
+        for (var i = 0; i < 9; i++)
             if (i != hole && i != hole + 1) 
                 this.addOnePipe(400, i * 60 + 10);
     },
@@ -159,7 +159,7 @@ socket.on('users_number', function(msg) {
     });
 
 // Initialize Phaser, and create a 400px by 490px game
-var game = new Phaser.Game(400, 690, Phaser.AUTO);
+var game = new Phaser.Game(400, 600, Phaser.AUTO);
 
 // Add the 'mainState' and call it 'main'
 game.state.add('main', mainState); 
