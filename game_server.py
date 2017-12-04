@@ -36,6 +36,7 @@ async def index(request):
 async def restore_score(request):
     global SCORE
     SCORE = 0
+    return web.Response()
 
 @sio.on('connect')
 async def connect(sid, environ):
