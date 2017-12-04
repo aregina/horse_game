@@ -97,7 +97,7 @@ var mainState = {
     },
 
     checkScore: function() {
-        if (score >= 10) {
+        if (score >= 20) {
             var win_screen = game.add.sprite(game.world.centerX, game.world.centerY, 'win_screen');
             win_screen.anchor.setTo(0.5, 0.5);
             game.paused = true;
@@ -175,6 +175,7 @@ var mainState = {
         socket.emit('score_update', {data: operation_type});
     },
 };
+
 
 // Add the 'mainState' and call it 'main'
 game.state.add('main', mainState); 
