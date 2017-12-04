@@ -33,6 +33,10 @@ async def index(request):
     with open('game/index.html') as f:
         return web.Response(text=f.read(), content_type='text/html')
 
+async def restore_score(request):
+    global SCORE
+    SCORE = 0
+
 @sio.on('connect')
 async def connect(sid, environ):
     global USERS_NUMBER
@@ -67,6 +71,7 @@ async def disconnect(sid):
 app.router.add_static('/assets', 'game/assets')
 app.router.add_static('/game', 'game')
 app.router.add_get('/', index)
+app.router.add_get('/restore_score', restore_score)
 
 if __name__ == '__main__':
     web.run_app(app, port=PORT)
