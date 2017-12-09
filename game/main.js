@@ -26,7 +26,7 @@ var mainState = {
         game.load.image('sky', '/assets/sky.png');
         game.load.image('pipe', '/assets/pipe.png');
         //game.load.image('win_screen', '/assets/phaser.png');
-        game.load.image('win_screen', '/assets/you_win_2.png');
+        game.load.image('win_screen', '/assets/you_win_3.png');
     },
 
     create: function() { 
