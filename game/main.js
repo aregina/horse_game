@@ -26,7 +26,7 @@ var mainState = {
         game.load.image('sky', '/assets/sky.png');
         game.load.image('pipe', '/assets/pipe.png');
         //game.load.image('win_screen', '/assets/phaser.png');
-        game.load.image('win_screen', '/assets/final_horse.jpg');
+        game.load.image('win_screen', '/assets/you_win.png');
     },
 
     create: function() { 
@@ -98,7 +98,7 @@ var mainState = {
     },
 
     checkScore: function() {
-        if (score >= 20) {
+        if (score >= 5) {
             var win_screen = game.add.sprite(game.world.centerX, game.world.centerY, 'win_screen');
             win_screen.anchor.setTo(0.5, 0.5);
             game.paused = true;
